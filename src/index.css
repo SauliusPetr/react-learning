@@ -21,3 +21,14 @@ code {
 .avatar{
   border-radius: 50px;
 }
+
+.fancy{
+  font-family: 'Georgia';
+}
+.title{
+  color: darkslategrey;
+  text-decoration: underline;
+}
+.quote{
+  font-weight: bold;
+}

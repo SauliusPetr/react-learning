@@ -11,7 +11,7 @@ export default function Profile({ person, size }) {
   );
 }
 
-function Card({ children }) {
+export function Card({ children }) {
   return <section className="profile">{children}</section>;
 }
 

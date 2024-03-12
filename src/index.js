@@ -4,6 +4,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import Profile from "./Profile.js";
 import { ProfileList } from "./Profile.js";
+import FancyText from "./FancyText.js";
+import GenerateQuote from "./GenerateQuote.js";
+import { Card } from "./Profile.js";
+import ArtDisplay from "./ArtDisplay.js";
+import Copyright from "./Copyright.js";
+import { AlertButton, SendEmail } from "./CustomButtons.js";
 
 export default function App() {
   return (
@@ -50,6 +56,19 @@ export default function App() {
       <ProfileList profession={"chemist"} />
       <h2>Everyone Else</h2>
       <ProfileList profession={"chemist"} exclude={true} />
+      <Card>
+        <FancyText title text={"Inspirational quote generator"} />
+        <GenerateQuote>
+          <Copyright year={new Date().getFullYear()} />
+        </GenerateQuote>
+      </Card>
+      <Card>
+        <ArtDisplay />
+      </Card>
+      <Card>
+        <AlertButton message={"ALERRRT!"} />
+        <SendEmail messageTo={"name@domain.net"} />
+      </Card>
     </div>
   );
 }
@@ -58,5 +77,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
