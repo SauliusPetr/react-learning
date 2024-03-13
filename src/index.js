@@ -9,7 +9,13 @@ import GenerateQuote from "./GenerateQuote.js";
 import { Card } from "./Profile.js";
 import ArtDisplay from "./ArtDisplay.js";
 import Copyright from "./Copyright.js";
-import { AlertButton, SendEmail } from "./CustomButtons.js";
+import { Toolbar, AlertButton, SendEmail } from "./CustomButtons.js";
+import { MessageForm, DisplayFormInput } from "./Form.js";
+import {
+  NormalThenUpdater,
+  UpdaterThenNormal,
+  UpdaterFunctionEx,
+} from "./UpdaterFunctions.js";
 
 export default function App() {
   return (
@@ -68,11 +74,26 @@ export default function App() {
       <Card>
         <AlertButton message={"ALERRRT!"} />
         <SendEmail messageTo={"name@domain.net"} />
+        <Toolbar
+          onClikToolbar={() => alert("propfunction passed to Toolbar")}
+        />
+      </Card>
+      <Card>
+        <MessageForm />
+        <hr />
+        <DisplayFormInput />
+      </Card>
+      <Card>
+        <h3>Adding 3 updater functions</h3>
+        <UpdaterFunctionEx />
+        <h3>Adding updater function and then a normal</h3>
+        <UpdaterThenNormal />
+        <h3>Adding normal function and then an updater func</h3>
+        <NormalThenUpdater />
       </Card>
     </div>
   );
 }
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>

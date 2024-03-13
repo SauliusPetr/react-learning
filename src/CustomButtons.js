@@ -22,11 +22,32 @@ export function SendEmail({ messageTo }) {
     </>
   );
 }
-
+export function Toolbar({ onClikToolbar }) {
+  return (
+    <div
+      onClick={() => alert("Toolbar alert!")}
+      style={{ backgroundColor: "gray" }}
+    >
+      <CustomEventButton handleClick={() => alert("play movie alert!")}>
+        play movie
+      </CustomEventButton>
+      <CustomEventButton handleClick={() => alert("plaing asong alert!")}>
+        play song
+      </CustomEventButton>
+    </div>
+  );
+}
 function CustomEventButton({ handleClick, children }) {
   return (
     <>
-      <button onClick={handleClick}>{children}</button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClick();
+        }}
+      >
+        {children}
+      </button>
     </>
   );
 }
