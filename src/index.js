@@ -10,12 +10,14 @@ import { Card } from "./Profile.js";
 import ArtDisplay from "./ArtDisplay.js";
 import Copyright from "./Copyright.js";
 import { Toolbar, AlertButton, SendEmail } from "./CustomButtons.js";
-import { MessageForm, DisplayFormInput } from "./Form.js";
+import { MessageForm, DisplayFormInput, UpdateObjInForm } from "./Form.js";
 import {
   NormalThenUpdater,
   UpdaterThenNormal,
   UpdaterFunctionEx,
 } from "./UpdaterFunctions.js";
+import { CursorHighlight } from "./ObjectsInState.js";
+import { AddArrayItems, DeleteArrayItems } from "./ArrayManipulation.js";
 
 export default function App() {
   return (
@@ -90,6 +92,16 @@ export default function App() {
         <UpdaterThenNormal />
         <h3>Adding normal function and then an updater func</h3>
         <NormalThenUpdater />
+      </Card>
+      <Card>
+        <CursorHighlight />
+      </Card>
+      <Card>
+        <UpdateObjInForm />
+      </Card>
+      <Card>
+        <AddArrayItems />
+        <DeleteArrayItems />
       </Card>
     </div>
   );

@@ -61,6 +61,47 @@ export function DisplayFormInput() {
   );
 }
 
+export function UpdateObjInForm() {
+  const [car, setCar] = useState({
+    color: "Light Green",
+    mark: "Volvo",
+    model: "P18000",
+  });
+
+  function handleColorChange(e) {
+    setCar({ ...car, color: e.target.value });
+  }
+
+  function handleMarkChange(e) {
+    setCar({ ...car, mark: e.target.value });
+  }
+
+  function handleModelChange(e) {
+    setCar({ ...car, model: e.target.value });
+  }
+  return (
+    <>
+      <form>
+        <label>
+          Color:
+          <input type="text" value={car.color} onChange={handleColorChange} />
+        </label>
+        <label>
+          Mark:
+          <input type="text" value={car.mark} onChange={handleMarkChange} />
+        </label>
+        <label>
+          Model:
+          <input type="text" value={car.model} onChange={handleModelChange} />
+        </label>
+      </form>
+      <p>
+        {car.color} {car.mark} {car.model}
+      </p>
+    </>
+  );
+}
+
 export function MessageForm() {
   return (
     <Form>
