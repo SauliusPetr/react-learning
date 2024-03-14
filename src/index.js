@@ -10,7 +10,12 @@ import { Card } from "./Profile.js";
 import ArtDisplay from "./ArtDisplay.js";
 import Copyright from "./Copyright.js";
 import { Toolbar, AlertButton, SendEmail } from "./CustomButtons.js";
-import { MessageForm, DisplayFormInput, UpdateObjInForm } from "./Form.js";
+import {
+  MessageForm,
+  DisplayFormInput,
+  UpdateObjInForm,
+  FormWithValidation,
+} from "./Form.js";
 import {
   NormalThenUpdater,
   UpdaterThenNormal,
@@ -18,6 +23,7 @@ import {
 } from "./UpdaterFunctions.js";
 import { CursorHighlight } from "./ObjectsInState.js";
 import { AddArrayItems, DeleteArrayItems } from "./ArrayManipulation.js";
+import { WeatherApp } from "./WeatherApp.js";
 
 export default function App() {
   return (
@@ -102,6 +108,14 @@ export default function App() {
       <Card>
         <AddArrayItems />
         <DeleteArrayItems />
+        <hr />
+        <FormWithValidation />
+      </Card>
+      <Card>
+        <UpladImage />
+      </Card>
+      <Card>
+        <WeatherApp />
       </Card>
     </div>
   );
@@ -112,3 +126,37 @@ root.render(
     <App />
   </StrictMode>
 );
+
+function UpladImage() {
+  requesImage("cats");
+  return (
+    <>
+      <img id={"api_img"} src={"#"} />
+      <button
+        onClick={() => {
+          requesImage("cats");
+        }}
+      >
+        Refresh
+      </button>
+    </>
+  );
+}
+
+async function requesImage(searchTitle) {
+  try {
+    //returns promise
+    const response = await fetch(
+      `https://api.giphy.com/v1/gifs/translate?api_key=DUapA0dTj5acm4onJ7mEqBy9GeqkpPES&s=${searchTitle}`,
+      { mode: "cors" }
+    );
+    const newImgPromise = await response.json();
+    const imgData = await newImgPromise;
+
+    const imgUrl = imgData.data.images.original.url;
+    let imageDiv = document.getElementById("api_img");
+    imageDiv.src = imgUrl;
+  } catch (error) {
+    console.log(error);
+  }
+}

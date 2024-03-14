@@ -113,3 +113,67 @@ export function MessageForm() {
     </Form>
   );
 }
+
+let animal = [
+  { id: 0, name: "tiger", seen: false },
+  { id: 1, name: "cat", seen: false },
+];
+export function FormWithValidation() {
+  const [myList, setMyList] = useState(animal);
+  const [yourList, setYourList] = useState(animal);
+
+  function handleMyList(itemId, isChecked) {
+    setMyList(
+      myList.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, seen: isChecked };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
+  function handleYourList(itemId, isChecked) {
+    setYourList(
+      yourList.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, seen: isChecked };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
+  return (
+    <>
+      <h3>My animal list:</h3>
+      <ItemList listToView={myList} actionOnToggle={handleMyList} />
+
+      <h3>Your animal list:</h3>
+      <ItemList listToView={yourList} actionOnToggle={handleYourList} />
+    </>
+  );
+}
+
+function ItemList({ listToView, actionOnToggle }) {
+  return (
+    <ul>
+      {listToView.map((item) => (
+        <li key={item.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={item.seen}
+              onChange={(event) => {
+                actionOnToggle(item.id, event.target.checked);
+              }}
+            />
+            {item.name}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}
